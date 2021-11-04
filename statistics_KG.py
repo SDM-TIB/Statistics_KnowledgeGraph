@@ -15,6 +15,7 @@ def get_entity_entropy(sparql, n_triple):
                 {?s ?p ?o}
                 UNION
                 {?o ?p ?s}
+                #FILTER regex(?s, "http://")
                 }
                 GROUP BY ?s
                 OFFSET """ + str(offset) + """
