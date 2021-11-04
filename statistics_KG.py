@@ -7,7 +7,7 @@ def get_entity_entropy(sparql, n_triple):
     EE = 0
     n_entity = 0
     offset = 0
-    limit = 10000
+    limit = 1000000
     while True:
         query = """
             select ?s count(?o) as ?NumOc
@@ -28,6 +28,7 @@ def get_entity_entropy(sparql, n_triple):
             val = -probability_entity * math.log(probability_entity)
             EE += val
         n_entity += len(results['results']['bindings'])
+        print('n_entity: ', n_entity)
         if len(results['results']['bindings']) < limit:
             return EE, n_entity
         offset += limit
